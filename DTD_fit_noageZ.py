@@ -27,6 +27,11 @@ from scipy.optimize import minimize
 from tqdm import tqdm
 from ccfrac import CCfrac
 
+def expandDTD(DTD, length, Nbins):
+    nreps = int((length+1)/Nbins)
+    newDTD = np.asarray([[DTD[i]] * nreps for i in range(len(DTD))])
+    return newDTD.flatten()[:-1]
+
 # Class to wrap each galaxy
 class galaxy:
     def __init__(self, name, Mstar, bins):
@@ -35,7 +40,7 @@ class galaxy:
         self.bins = bins  # Number of bins
 
         # Get Fe_Ia/Fe_CC info from Kirby+19
-        if name=='scl':
+        if name=='Scl':
             rfile = fits.open('data/rfrac/chemev_scl.fits')
             self.R = rfile[1].data['R'].T[:,0]
             self.Rerrlo = rfile[1].data['RERRL'].T[:,0]
@@ -49,18 +54,16 @@ class galaxy:
             self.feh = data.data.FEH
 
         # Get MDF data from Kirby+09
-        if name=='scl':
+        '''
+        if name=='Scl':
             kirby09 = Table.read('data/mdf/kirby_scl_mdf.txt', format='ascii.cds')
             self.mdf_feh = kirby09['[Fe/H]']
             self.mdf_feh_err = kirby09['e_[Fe/H]']
-        else:
-            # FINISH THIS
-            pass
-
-    def expandDTD(self, DTD, length, Nbins):
-        nreps = int((length+1)/Nbins)
-        newDTD = np.asarray([[DTD[i]] * nreps for i in range(len(DTD))])
-        return newDTD.flatten()[:-1]
+        '''
+        kirby09_new = Table.read('data/mdf/kirby_dsph_catalog.dat', format='ascii.cds')
+        idx = np.where(kirby09_new['dSph']==name)
+        self.mdf_feh = kirby09_new['eps(Fe)'][idx] - 7.50
+        self.mdf_feh_err = kirby09_new['e_eps(Fe)'][idx]
 
     def fitdtd(self, Niter, plot=False):
         """Fit DTD for a galaxy using MC-like method 
@@ -120,7 +123,7 @@ class galaxy:
             def log_likelihood(params):
 
                 # Compute DTD by expanding parameters into full DTD
-                DTD = self.expandDTD(params, len(sfh), self.bins)
+                DTD = expandDTD(params, len(sfh), self.bins)
 
                 # Convolve DTD with SFH
                 test = np.convolve(DTD, sfh)
@@ -151,7 +154,7 @@ class galaxy:
             DTD_array[iteration, :] = soln.x
 
             # Store observed and expected rates of IaSNe in arrays
-            DTD = self.expandDTD(soln.x, len(sfh), self.bins)
+            DTD = expandDTD(soln.x, len(sfh), self.bins)
             exprate = np.convolve(DTD, sfh)
             exprate[~np.isfinite(exprate)] = 0.
 
@@ -159,9 +162,9 @@ class galaxy:
             obs_rates[iteration, :] = N_Ia
 
         # Compute percentiles
-        DTD_median = self.expandDTD(np.percentile(DTD_array, 50, axis=0), len(sfh), self.bins)
-        DTD_lo = self.expandDTD(np.percentile(DTD_array, 16, axis=0), len(sfh), self.bins)
-        DTD_hi = self.expandDTD(np.percentile(DTD_array, 84, axis=0), len(sfh), self.bins)
+        DTD_median = expandDTD(np.percentile(DTD_array, 50, axis=0), len(sfh), self.bins)
+        DTD_lo = expandDTD(np.percentile(DTD_array, 16, axis=0), len(sfh), self.bins)
+        DTD_hi = expandDTD(np.percentile(DTD_array, 84, axis=0), len(sfh), self.bins)
 
         if plot:
 
@@ -289,5 +292,4 @@ class galaxy:
         return
 
 if __name__ == "__main__":
-    scl = galaxy('scl', Mstar=1.2e6, bins=10)
-    scl.convertDTD(Niter=100, testplot=False, plotageZ=False)
+    galaxy('Scl', Mstar=1.2e6, bins=10).convertDTD(Niter=100, testplot=False, plotageZ=False)  # Sculptor dSph
