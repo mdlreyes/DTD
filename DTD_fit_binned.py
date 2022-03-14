@@ -24,15 +24,39 @@ from scipy.io.idl import readsav
 from astropy.table import Table
 from scipy.stats import norm
 from scipy.optimize import minimize
+from scipy.interpolate import interp1d
 from tqdm import tqdm
 from ccfrac import CCfrac
 from amr import amr
 
-# Define an age-Z relation
-fehlim = (-2,-1.5)
-age, feh, feh2age_conversion, fehlimidx = amr('gce', fehlim)
+'''
+# Test AMR
+amr_delosreyes = np.load('/Users/miadelosreyes/Documents/Research/MnDwarfs_DTD/code/gce/output/amr_test.npy')
+feh_dlr = amr_delosreyes[:,0]  # [Fe/H]
+age_dlr = amr_delosreyes[:,1]  # Gyr
+goodidx = np.where(np.isfinite(feh_dlr))[0]
+feh_dlr = feh_dlr[goodidx]
+age_dlr = age_dlr[goodidx]
 
-def feh2age(a):
+# Extrapolate to [Fe/H] ~ 0.
+feh0 = 0.0
+age0 = age_dlr[0]+(feh0-feh_dlr[0])*(age_dlr[1]-age_dlr[0])/(feh_dlr[1]-feh_dlr[0])
+age0 = age_dlr[-1]+(feh0-feh_dlr[-1])*(age_dlr[-1]-age_dlr[-2])/(feh_dlr[-1]-feh_dlr[-2])
+feh_dlr = np.concatenate((feh_dlr,[feh0]))
+age_dlr = np.concatenate((age_dlr,[age0]))
+age_feh_conversion = interp1d(age_dlr, feh_dlr)
+
+# Get Ia rate from GCE
+iarate_data = np.load('/Users/miadelosreyes/Documents/Research/MnDwarfs_DTD/code/gce/output/iarate_test.npy')
+iarate = iarate_data[0][10:]/1e3  # per Gyr
+t = iarate_data[1][10:]  # Gyr
+# Convert to [Fe/H] scale
+gcefeh = age_feh_conversion(t)  # dex
+iarate = iarate[:-1] * np.diff(t)/np.diff(gcefeh)  # units: SNe/Gyr * Gyr/dex = SNe/dex
+gcefeh = gcefeh[:-1]
+'''
+
+def feh2age(a, feh2age_conversion):
     return np.polyval(feh2age_conversion,a)
 
 def expandDTD(DTD, length, Nbins):
@@ -47,6 +71,9 @@ class galaxy:
         self.name = name  # ID string for galaxy
         self.Mstar = Mstar  # Stellar mass (Msun)
         self.bins = bins  # Number of bins
+
+        # Define an age-Z relation
+        _, _, self.feh2age_conversion, _ = amr(self.name, gcetest=False)
 
         # Get Fe_Ia/Fe_CC info from Kirby+19
         if name=='Scl':
@@ -63,7 +90,8 @@ class galaxy:
         # Define metallicity and age ranges
         self.feh0 = -3.2
         self.ecdf_feh = np.linspace(self.feh0,-0.5, num=120) #np.arange(-4, -0.2, step=0.01) #self.R_feh # 
-        self.ia_age = 13.791 - feh2age(self.ecdf_feh)
+        self.ia_age = 13.791 - feh2age(self.ecdf_feh, self.feh2age_conversion)
+        self.age0 = 13.791 - feh2age(self.feh0, self.feh2age_conversion)
         self.ia_fehbin = np.diff(self.ecdf_feh)[0]  # Metallicity bin edges (dex)
         self.ia_agebin = np.diff(self.ia_age)[0]  # Age bin edges (Gyr)
 
@@ -140,7 +168,7 @@ class galaxy:
 
             # Compute rate of IaSNe as function of [Fe/H]
             N_Ia_cumulative = N_CC_cumulative * N_Ia_CC  
-            N_Ia = np.diff(N_Ia_cumulative)/self.ia_fehbin  # SNe at each bin
+            N_Ia = np.diff(N_Ia_cumulative)  # SNe in each bin (units: SNe/delta[Z])
             N_Ia = np.insert(N_Ia, 0, 0)
             N_Ia[~np.isfinite(N_Ia)] = 0.
             N_Ia[N_Ia < 0.] = 0.
@@ -150,7 +178,7 @@ class galaxy:
             #noIa_idx = np.where(self.ecdf_feh < -2.1)[0]
 
             # Save SFH (for use in test plotting later)
-            sfh = np.diff(sfh_cumulative)/self.ia_fehbin  # Mass of stars formed at each bin
+            sfh = np.diff(sfh_cumulative)  # Mass of stars formed in each bin (units: Msun/delta[Z])
             sfh = np.insert(sfh,0,0)
             sfh_array[iteration, :] = sfh
 
@@ -158,10 +186,10 @@ class galaxy:
             def log_likelihood(params):
 
                 # Compute DMD by expanding parameters into full DMD
-                DMD = expandDTD(params, len(sfh), self.bins)  # DMD units: SNe/Msun/dex
+                DMD = expandDTD(params, len(sfh), self.bins)  # DMD units: SNe/Msun/delta[Z]
 
                 # Convolve DMD with SFH
-                test = np.convolve(DMD, sfh) * self.ia_fehbin  # units: DMD (SNe/Msun/dex) * SFH (Msun) * dex = SNe
+                test = np.convolve(DMD, sfh) * self.ia_fehbin  # units: DMD (SNe/Msun/delta[Z]) * SFH (Msun/delta[Z]) * delta[Z] = SNe/delta[Z]
                 test[~np.isfinite(test)] = 0.
                 N_Ia_exp = test[:len(N_Ia)]    
 
@@ -188,41 +216,26 @@ class galaxy:
             initial = np.zeros(self.bins)
             soln = minimize(nll, initial, method='powell') #, options={'ftol':1e-6, 'maxiter':100000})#, 'direc':np.diag([-0.01, 0.01, 0.01])})
 
-            # Test what happens if I modify the DMD
+            # Get DMD
             finalsoln = soln.x
-            #finalsoln[8] = 0.075
 
             # Try cutting out later parts of DMD
-            zeroidx = np.isclose(finalsoln,0.)
-            try:
-                #deltabool = np.where(np.diff(zeroidx))[0][1]  # first index where the DTD goes from nonzero to zero
-                #finalsoln[deltabool+1:] = 0.
+            fehidx = np.where((self.ecdf_feh - self.feh0) > 2.0)[0]
+            maxint = int((fehidx[0]+1)/(len(self.ecdf_feh)/self.bins))
+            finalsoln[maxint:] = 0.
 
-                # Store solution in array
-                DTD_array[iteration, :] = finalsoln
+            # Store solution in array
+            DTD_array[iteration, :] = finalsoln
 
-                # Store observed and expected rates of IaSNe in arrays
-                DTD = expandDTD(finalsoln, len(sfh), self.bins)
+            # Store observed and expected rates of IaSNe in arrays
+            DTD = expandDTD(finalsoln, len(sfh), self.bins)
 
-                # Test what happens if I cut out the later parts of the DTD
-                #latetime = np.where(self.ecdf_feh[:-1] > -1.5)[0]
-                #DTD[latetime] = 0.
+            exprate = np.convolve(DTD, sfh) * self.ia_fehbin
+            exprate[~np.isfinite(exprate)] = 0.
 
-                exprate = np.convolve(DTD, sfh) * self.ia_fehbin
-                exprate[~np.isfinite(exprate)] = 0.
-
-                exp_rates[iteration, :] = exprate[:len(N_Ia)]
-                obs_rates[iteration, :] = N_Ia
-
-            except:
-                baditer.append(iteration)
-                continue
-
-        # Throw out any bad iterations
-        DTD_array = np.delete(DTD_array, np.array(baditer), axis=0)
-        obs_rates = np.delete(obs_rates, np.array(baditer), axis=0)
-        exp_rates = np.delete(exp_rates, np.array(baditer), axis=0)
-        sfh_array = np.delete(sfh_array, np.array(baditer), axis=0)
+            # Convert to 10^3 SNe/Gyr
+            exp_rates[iteration, :] = exprate[:len(N_Ia)]/self.ia_fehbin/1e3
+            obs_rates[iteration, :] = N_Ia/self.ia_fehbin/1e3
 
         # Compute percentiles
         print(np.percentile(DTD_array, 50, axis=0))
@@ -242,6 +255,8 @@ class galaxy:
             plt.show()
 
             # Try plotting rates?
+            #plt.plot(gcefeh, iarate, 'r--', label='GCE')  # Test
+
             plt.fill_between(self.ecdf_feh, np.percentile(obs_rates, 16, axis=0), np.percentile(obs_rates, 84, axis=0), color=plt.cm.Pastel2(0), alpha=0.5)
             plt.plot(self.ecdf_feh, np.percentile(obs_rates, 50, axis=0), linestyle='-', color=plt.cm.Dark2(0), label='Observed rate')
             plt.fill_between(self.ecdf_feh, np.percentile(exp_rates, 16, axis=0), np.percentile(exp_rates, 84, axis=0), color=plt.cm.Pastel2(1), alpha=0.5)
@@ -286,80 +301,118 @@ class galaxy:
         plt.figure(figsize=(8,6))
 
         # Convert from metallicity to age
-        DTD = DMD * self.ia_fehbin/self.ia_agebin  # units: (SNe/Msun/dex) * dex/Gyr = SNe/Msun/Gyr
-        dtd_lo = dmd_lo * self.ia_fehbin/self.ia_agebin
-        dtd_hi = dmd_hi * self.ia_fehbin/self.ia_agebin
+        print(self.ia_agebin/self.ia_fehbin, self.feh2age_conversion)
+        slope = self.ia_agebin/self.ia_fehbin
+        DTD = DMD * slope  # units: (SNe/Msun/bin) * delta[Z]/Gyr = SNe/Msun/Gyr
+        dtd_lo = dmd_lo * slope
+        dtd_hi = dmd_hi * slope
 
         # Plot resulting DTD
-        plt.plot(self.ia_age[:-1], DTD, linestyle='-', color=plt.cm.Dark2(0))
+        plt.plot(self.ia_age[:-1]-self.age0, DTD, linestyle='-', color=plt.cm.Dark2(0))
         if dtd_lo is not None and dtd_hi is not None:
-            plt.fill_between(self.ia_age[:-1], dtd_lo, dtd_hi, color=plt.cm.Pastel2(0))
+            plt.fill_between(self.ia_age[:-1] - self.age0, dtd_lo, dtd_hi, color=plt.cm.Pastel2(0))
 
         # Plot t^-1 line
-        #plt.plot(age, (DTD[-1]/(age[-1]**-1.1))*age**(-1.1), 'r--')
+        testage = np.linspace(0, self.ia_age[-1], 100)
+        t_ia = 1e-1 #Gyr
+        rate = (1e-3)*testage**(-1.1)
+        w = np.where(testage <= t_ia)[0]
+        if len(w) > 0: rate[w] = 0.0
+        plt.plot(testage, rate, 'r--')
 
         # Plot formatting
         #plt.xlabel('Time (Gyr)', fontsize=16)
         #plt.ylim(1e-6,1)
         #plt.xscale('log')
         #plt.yscale('log')
-        plt.xlabel('Log(t) [Gyr]', fontsize=16)
-        plt.ylabel(r'DTD ($10^{-3}\mathrm{Gyr}~M_{\odot}^{-1}$)', fontsize=16)
+        plt.xlabel('Time (Gyr)', fontsize=16)
+        plt.ylabel(r'DTD ($\mathrm{Gyr}^{-1}~M_{\odot}^{-1}$)', fontsize=16)
         #plt.legend(loc='best', title='Age-Z relations', fontsize=12, title_fontsize=14)
         plt.savefig('figures/'+self.name+'_binned_DTD_final.png', bbox_inches='tight')
         plt.show()
 
         return
 
-def plotgalaxies():
+def plotgalaxies(keyword, Nbins, Niter):
     """Plots DTDs from several galaxies."""
 
-    galaxynames = ['LeoII','Scl','Dra'] #,'Sex','UMi']
-    logMstar = np.asarray([6.16,6.08,5.96]) #,5.93,5.75])  # Stellar masses from Woo et al. (2008)
-
-    # Get [Fe/H]
-    feh = galaxy('Scl', Mstar=10**6.08, bins=20).feh[:-1]
+    galaxynames = ['Scl','Dra','LeoII'] #,'Sex','UMi']
+    logMstar = np.asarray([6.08,5.96,6.16]) #,5.93,5.75])  # Stellar masses from Woo et al. (2008)
+    galaxyfullnames = ['Sculptor','Draco','Leo II']
 
     # Prepare plot
     plt.figure(figsize=(8,6))
 
+    handles = []
+    labels = []
+
     for i, galaxyname in enumerate(galaxynames):
-        # Get DTD
-        DTD_median, DTD_lo, DTD_hi = galaxy(galaxyname, Mstar=10**logMstar[i], bins=25).fitdtd(Niter=200)
 
-        # Get age
-        age = -1 * feh # PLACEHOLDER for now!
+        # Instantiate galaxy object
+        galaxyobj = galaxy(galaxyname, Mstar=10**logMstar[i], bins=Nbins)
 
-        # Plot DTDs
-        plt.plot(age, DTD_median, linestyle='-', lw=2, color=plt.cm.Dark2(i), label=galaxyname)
-        if DTD_lo is not None and DTD_hi is not None:
-            plt.fill_between(age, DTD_lo, DTD_hi, color=plt.cm.Pastel2(i), alpha=0.5)
+        # Get DMD
+        DMD, dmd_lo, dmd_hi = galaxyobj.fitdtd(Niter=Niter)
 
-    # Plot t^-1 line
-    #plt.plot(age, (DTD[-1]/(age[-1]**-1.1))*age**(-1.1), 'r--')
+        if keyword=='dmd':
+            # Plot DMD
+            p1, = plt.plot(galaxyobj.ecdf_feh[:-1]-galaxyobj.feh0, DMD, linestyle='-', color=plt.cm.Dark2(i))
+            #p2, = plt.plot(galaxyobj.ecdf_feh[:-1]-galaxyobj.feh0, dmd_lo, linestyle='-', color=plt.cm.Pastel2(i))
+            #plt.plot(galaxyobj.ecdf_feh[:-1]-galaxyobj.feh0, dmd_hi, linestyle='-', color=plt.cm.Pastel2(i))
+            p2 = plt.fill_between(galaxyobj.ecdf_feh[:-1]-galaxyobj.feh0, dmd_lo, dmd_hi, alpha=0.5, color=plt.cm.Pastel2(i))
+            handles.append((p1,p2))
+            labels.append(galaxyfullnames[i])
+        
+        elif keyword=='dtd':
+            # Convert DMD to DTD
+            slope = galaxyobj.ia_agebin/galaxyobj.ia_fehbin
+            DTD = DMD * slope  # units: (SNe/Msun/bin) * delta[Z]/Gyr = SNe/Msun/Gyr
+            dtd_lo = dmd_lo * slope
+            dtd_hi = dmd_hi * slope
 
-    # Plot formatting
-    #plt.ylim(1e-6,1)
-    plt.xscale('log')
-    plt.yscale('log')
-    plt.xlabel('Log(t) [Gyr]', fontsize=16)
-    plt.ylabel(r'DTD ($10^{-3}\mathrm{Gyr}~M_{\odot}^{-1}$)', fontsize=16)
-    plt.legend(loc='best', fontsize=12, title_fontsize=14)
-    plt.savefig('figures/noageZ_DTD_testageZ.png', bbox_inches='tight')
+            # Plot resulting DTD
+            p1, = plt.plot(galaxyobj.ia_age[:-1]-galaxyobj.age0, DTD, linestyle='-', color=plt.cm.Dark2(i))
+            p2 = plt.fill_between(galaxyobj.ia_age[:-1]-galaxyobj.age0, dtd_lo, dtd_hi, alpha=0.5, color=plt.cm.Pastel2(i))
+            handles.append((p1,p2))
+            labels.append(galaxyfullnames[i])
+
+    if keyword=='dmd':
+        plt.axvline(2.0, color='r', linestyle='--')
+        plt.xlabel(r'Delay metallicity $\zeta$', fontsize=16)
+        plt.ylabel(r'$\Psi$ ($M_{\odot}^{-1}~\mathrm{dex}^{-1}$)', fontsize=16)
+        plt.ylim(-0.005,0.2)
+        outputname = 'noageZ_DMD.png'
+
+    elif keyword=='dtd':
+        # Plot t^-1 line
+        testage = np.linspace(0, galaxyobj.ia_age[-1], 100)
+        t_ia = 1e-1 #Gyr
+        rate = (1e-3)*testage**(-1.1)
+        w = np.where(testage <= t_ia)[0]
+        if len(w) > 0: rate[w] = 0.0
+        plt.plot(testage, rate, 'r--')
+
+        plt.xlabel('Time (Gyr)', fontsize=16)
+        plt.ylabel(r'$\Psi(\tau)$ (M_{\odot}^{-1}~\mathrm{Gyr}^{-1}$)', fontsize=16)
+        outputname = 'noageZ_DTD.png'
+
+    # Additional plot formatting
+    plt.legend(handles=handles, labels=labels, loc='best', fontsize=12)
+    plt.savefig('figures/'+outputname, bbox_inches='tight')
     plt.show()
 
     return
 
 if __name__ == "__main__":
     # DMD calculation
-    galaxy('Scl', Mstar=10**6.08, bins=40).fitdtd(50, plot=True) #
-    #galaxy('Dra', Mstar=10**5.96, bins=40).fitdtd(20, plot=True)
+    #galaxy('Scl', Mstar=10**6.08, bins=40).fitdtd(20, plot=True) #
+    #galaxy('Dra', Mstar=10**5.96, bins=40).fitdtd(30, plot=True)
     #galaxy('LeoII', Mstar=10**6.16, bins=40).fitdtd(20, plot=True)
     #galaxy('Sex', Mstar=10**5.93, bins=40).fitdtd(20, plot=True)
 
     # DTD conversion
-    #galaxy('Scl', Mstar=1.2e6, bins=40).convertDTD(Niter=20, testplot=True)  # Sculptor dSph
+    #galaxy('Scl', Mstar=1.2e6, bins=40).convertDTD(Niter=20, testplot=False)  # Sculptor dSph
     #galaxy('Dra', Mstar=10**5.96, bins=40).convertDTD(Niter=20, testplot=True)  # Draco dSph
 
     # Plotting multiple galaxies
-    #plotgalaxies()
+    plotgalaxies('dmd', Nbins=40, Niter=20)

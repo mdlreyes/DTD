@@ -1,0 +1,333 @@
+Title: The Star Formation Histories of Local Group Dwarf Galaxies I. 
+       Hubble Space Telescope / Wide Field Planetary Camera 2 Observations 
+Authors: Weisz D.R., Dolphin A.E., Skillman E.D., Holtzman J., 
+         Gilbert K.M., Dalcanton J.J., Williams B.F. 
+Table: Total Star Formation Histories of Galaxies with Multiple Fields
+================================================================================
+Byte-by-byte Description of file: apj495810t6_mrt.txt
+--------------------------------------------------------------------------------
+   Bytes  Format Units       Label     Explanations
+--------------------------------------------------------------------------------
+   1-  11 A11     ---        ID        Galaxy identifier
+  13-  17 F5.2   10+6solMass TMass     Total mass formed (1)
+  19-  24 F6.3   10+6solMass UrTMass   Random uncertainty 84th percentile in TMass
+  26-  31 F6.3   10+6solMass UtTMass   Total uncertainty 84th percentile in TMass
+  33-  38 F6.3   10+6solMass LrTMass   Random uncertainty 16th percentile in TMass
+  40-  45 F6.3   10+6solMass LtTMass   Total uncertainty 16th percentile in TMass
+  47-  50 F4.2   [yr]        f10.1     Mass fraction formed prior to log(t) = 10.1
+                                          from best fit SFH (2)
+  52-  55 F4.2   [yr]        Urf10.1   Random uncertainty 84th percentile in f10.1
+  57-  60 F4.2   [yr]        Utf10.1   Total uncertainty 84th percentile in f10.1
+  62-  65 F4.2   [yr]        Lrf10.1   Random uncertainty 16th percentile in f10.1
+  67-  70 F4.2   [yr]        Ltf10.1   Total uncertainty 16th percentile in f10.1
+  72-  75 F4.2   [yr]        f10.05    Mass fraction formed prior to log(t) = 10.05
+                                          from best fit SFH (2)
+  77-  80 F4.2   [yr]        Urf10.05  Random uncertainty 84th percentile in f10.05
+  82-  85 F4.2   [yr]        Utf10.05  Total uncertainty 84th percentile in f10.05
+  87-  90 F4.2   [yr]        Lrf10.05  Random uncertainty 16th percentile in f10.05
+  92-  95 F4.2   [yr]        Ltf10.05  Total uncertainty 16th percentile in f10.05
+  97- 100 F4.2   [yr]        f10.0     Mass fraction formed prior to log(t) = 10.0
+                                          from best fit SFH (2)
+ 102- 105 F4.2   [yr]        Urf10.0   Random uncertainty 84th percentile in f10.0
+ 107- 110 F4.2   [yr]        Utf10.0   Total uncertainty 84th percentile in f10.0
+ 112- 115 F4.2   [yr]        Lrf10.0   Random uncertainty 16th percentile in f10.0
+ 117- 120 F4.2   [yr]        Ltf10.0   Total uncertainty 16th percentile in f10.0
+ 122- 125 F4.2   [yr]        f9.95     Mass fraction formed prior to log(t) = 9.95
+                                          from best fit SFH (2)
+ 127- 130 F4.2   [yr]        Urf9.95   Random uncertainty 84th percentile in f9.95
+ 132- 135 F4.2   [yr]        Utf9.95    Total uncertainty 84th percentile in f9.95
+ 137- 140 F4.2   [yr]        Lrf9.95   Random uncertainty 16th percentile in f9.95
+ 142- 145 F4.2   [yr]        Ltf9.95   Total uncertainty 16th percentile in f9.95
+ 147- 150 F4.2   [yr]        f9.9      Mass fraction formed prior to log(t) = 9.95
+                                          from best fit SFH (2)
+ 152- 155 F4.2   [yr]        Urf9.9    Random uncertainty 84th percentile in f9.9
+ 157- 160 F4.2   [yr]        Utf9.9     Total uncertainty 84th percentile in f9.9
+ 162- 165 F4.2   [yr]        Lrf9.9    Random uncertainty 16th percentile in f9.9
+ 167- 170 F4.2   [yr]        Ltf9.9    Total uncertainty 16th percentile in f9.9
+ 172- 175 F4.2   [yr]        f9.85     Mass fraction formed prior to log(t) = 9.85
+                                          from best fit SFH (2)
+ 177- 180 F4.2   [yr]        Urf9.85   Random uncertainty 84th percentile in f9.85
+ 182- 185 F4.2   [yr]        Utf9.85    Total uncertainty 84th percentile in f9.85
+ 187- 190 F4.2   [yr]        Lrf9.85   Random uncertainty 16th percentile in f9.85
+ 192- 195 F4.2   [yr]        Ltf9.85   Total uncertainty 16th percentile in f9.85
+ 197- 200 F4.2   [yr]        f9.8      Mass fraction formed prior to log(t) = 9.8
+                                          from best fit SFH (2)
+ 202- 205 F4.2   [yr]        Urf9.8    Random uncertainty 84th percentile in f9.8
+ 207- 210 F4.2   [yr]        Utf9.8     Total uncertainty 84th percentile in f9.8
+ 212- 215 F4.2   [yr]        Lrf9.8    Random uncertainty 16th percentile in f9.8
+ 217- 220 F4.2   [yr]        Ltf9.8    Total uncertainty 16th percentile in f9.8
+ 222- 225 F4.2   [yr]        f9.75     Mass fraction formed prior to log(t) = 9.75
+                                          from best fit SFH (2)
+ 227- 230 F4.2   [yr]        Urf9.75   Random uncertainty 84th percentile in f9.75
+ 232- 235 F4.2   [yr]        Utf9.75    Total uncertainty 84th percentile in f9.75
+ 237- 240 F4.2   [yr]        Lrf9.75   Random uncertainty 16th percentile in f9.75
+ 242- 245 F4.2   [yr]        Ltf9.75   Total uncertainty 16th percentile in f9.75
+ 247- 250 F4.2   [yr]        f9.7      Mass fraction formed prior to log(t) = 9.7
+                                          from best fit SFH (2)
+ 252- 255 F4.2   [yr]        Urf9.7    Random uncertainty 84th percentile in f9.7
+ 257- 260 F4.2   [yr]        Utf9.7     Total uncertainty 84th percentile in f9.7
+ 262- 265 F4.2   [yr]        Lrf9.7    Random uncertainty 16th percentile in f9.7
+ 267- 270 F4.2   [yr]        Ltf9.7    Total uncertainty 16th percentile in f9.7
+ 272- 275 F4.2   [yr]        f9.65     Mass fraction formed prior to log(t) = 9.65
+                                          from best fit SFH (2)
+ 277- 280 F4.2   [yr]        Urf9.65   Random uncertainty 84th percentile in f9.65
+ 282- 285 F4.2   [yr]        Utf9.65    Total uncertainty 84th percentile in f9.65
+ 287- 290 F4.2   [yr]        Lrf9.65   Random uncertainty 16th percentile in f9.65
+ 292- 295 F4.2   [yr]        Ltf9.65   Total uncertainty 16th percentile in f9.65
+ 297- 300 F4.2   [yr]        f9.6      Mass fraction formed prior to log(t) = 9.6
+                                          from best fit SFH (2)
+ 302- 305 F4.2   [yr]        Urf9.6    Random uncertainty 84th percentile in f9.6
+ 307- 310 F4.2   [yr]        Utf9.6     Total uncertainty 84th percentile in f9.6
+ 312- 315 F4.2   [yr]        Lrf9.6    Random uncertainty 16th percentile in f9.6
+ 317- 320 F4.2   [yr]        Ltf9.6    Total uncertainty 16th percentile in f9.6
+ 322- 325 F4.2   [yr]        f9.55     Mass fraction formed prior to log(t) = 9.55
+                                          from best fit SFH (2)
+ 327- 330 F4.2   [yr]        Urf9.55   Random uncertainty 84th percentile in f9.55
+ 332- 335 F4.2   [yr]        Utf9.55   Total uncertainty 84th percentile in f9.55
+ 337- 340 F4.2   [yr]        Lrf9.55   Random uncertainty 16th percentile in f9.55
+ 342- 345 F4.2   [yr]        Ltf9.55   Total uncertainty 16th percentile in f9.55
+ 347- 350 F4.2   [yr]        f9.5      Mass fraction formed prior to log(t) = 9.5
+                                          from best fit SFH (2)
+ 352- 355 F4.2   [yr]        Urf9.5    Random uncertainty 84th percentile in f9.5
+ 357- 360 F4.2   [yr]        Utf9.5    Total uncertainty 84th percentile in f9.5
+ 362- 365 F4.2   [yr]        Lrf9.5    Random uncertainty 16th percentile in f9.5
+ 367- 370 F4.2   [yr]        Ltf9.5    Total uncertainty 16th percentile in f9.5
+ 372- 375 F4.2   [yr]        f9.45     Mass fraction formed prior to log(t) = 9.45
+                                          from best fit SFH (2)
+ 377- 380 F4.2   [yr]        Urf9.45   Random uncertainty 84th percentile in f9.45
+ 382- 385 F4.2   [yr]        Utf9.45   Total uncertainty 84th percentile in f9.45
+ 387- 390 F4.2   [yr]        Lrf9.45   Random uncertainty 16th percentile in f9.45
+ 392- 395 F4.2   [yr]        Ltf9.45   Total uncertainty 16th percentile in f9.45
+ 397- 400 F4.2   [yr]        f9.4      Mass fraction formed prior to log(t) = 9.4
+                                          from best fit SFH (2)
+ 402- 405 F4.2   [yr]        Urf9.4    Random uncertainty 84th percentile in f9.4
+ 407- 410 F4.2   [yr]        Utf9.4    Total uncertainty 84th percentile in f9.4
+ 412- 415 F4.2   [yr]        Lrf9.4    Random uncertainty 16th percentile in f9.4
+ 417- 420 F4.2   [yr]        Ltf9.4    Total uncertainty 16th percentile in f9.4
+ 422- 425 F4.2   [yr]        f9.35     Mass fraction formed prior to log(t) = 9.35
+                                          from best fit SFH (2)
+ 427- 430 F4.2   [yr]        Urf9.35   Random uncertainty 84th percentile in f9.35
+ 432- 435 F4.2   [yr]        Utf9.35   Total uncertainty 84th percentile in f9.35
+ 437- 440 F4.2   [yr]        Lrf9.35   Random uncertainty 16th percentile in f9.35
+ 442- 445 F4.2   [yr]        Ltf9.35   Total uncertainty 16th percentile in f9.35
+ 447- 450 F4.2   [yr]        f9.3      Mass fraction formed prior to log(t) = 9.3
+                                          from best fit SFH (2)
+ 452- 455 F4.2   [yr]        Urf9.3    Random uncertainty 84th percentile in f9.3
+ 457- 460 F4.2   [yr]        Utf9.3    Total uncertainty 84th percentile in f9.3
+ 462- 465 F4.2   [yr]        Lrf9.3    Random uncertainty 16th percentile in f9.3
+ 467- 470 F4.2   [yr]        Ltf9.3    Total uncertainty 16th percentile in f9.3
+ 472- 475 F4.2   [yr]        f9.25     Mass fraction formed prior to log(t) = 9.25
+                                          from best fit SFH (2)
+ 477- 480 F4.2   [yr]        Urf9.25   Random uncertainty 84th percentile in f9.25
+ 482- 485 F4.2   [yr]        Utf9.25   Total uncertainty 84th percentile in f9.25
+ 487- 490 F4.2   [yr]        Lrf9.25   Random uncertainty 16th percentile in f9.25
+ 492- 495 F4.2   [yr]        Ltf9.25   Total uncertainty 16th percentile in f9.25
+ 497- 500 F4.2   [yr]        f9.2      Mass fraction formed prior to log(t) = 9.2
+                                          from best fit SFH (2)
+ 502- 505 F4.2   [yr]        Urf9.2    Random uncertainty 84th percentile in f9.2
+ 507- 510 F4.2   [yr]        Utf9.2    Total uncertainty 84th percentile in f9.2
+ 512- 515 F4.2   [yr]        Lrf9.2    Random uncertainty 16th percentile in f9.2
+ 517- 520 F4.2   [yr]        Ltf9.2    Total uncertainty 16th percentile in f9.2
+ 522- 525 F4.2   [yr]        f9.15     Mass fraction formed prior to log(t) = 9.15
+                                          from best fit SFH (2)
+ 527- 529 F3.1   [yr]        Urf9.15   Random uncertainty 84th percentile in f9.15
+ 531- 534 F4.2   [yr]        Utf9.15   Total uncertainty 84th percentile in f9.15
+ 536- 539 F4.2   [yr]        Lrf9.15   Random uncertainty 16th percentile in f9.15
+ 541- 544 F4.2   [yr]        Ltf9.15   Total uncertainty 16th percentile in f9.15
+ 546- 549 F4.2   [yr]        f9.1      Mass fraction formed prior to log(t) = 9.1
+                                          from best fit SFH (2)
+ 551- 553 F3.1   [yr]        Urf9.1    Random uncertainty 84th percentile in f9.1
+ 555- 558 F4.2   [yr]        Utf9.1    Total uncertainty 84th percentile in f9.1
+ 560- 563 F4.2   [yr]        Lrf9.1    Random uncertainty 16th percentile in f9.1
+ 565- 568 F4.2   [yr]        Ltf9.1    Total uncertainty 16th percentile in f9.1
+ 570- 573 F4.2   [yr]        f9.05     Mass fraction formed prior to log(t) = 9.05
+                                          from best fit SFH (2)
+ 575- 577 F3.1   [yr]        Urf9.05   Random uncertainty 84th percentile in f9.05
+ 579- 582 F4.2   [yr]        Utf9.05   Total uncertainty 84th percentile in f9.05
+ 584- 587 F4.2   [yr]        Lrf9.05   Random uncertainty 16th percentile in f9.05
+ 589- 592 F4.2   [yr]        Ltf9.05   Total uncertainty 16th percentile in f9.05
+ 594- 597 F4.2   [yr]        f9.0      Mass fraction formed prior to log(t) = 9.0
+                                          from best fit SFH (2)
+ 599- 601 F3.1   [yr]        Urf9.0    Random uncertainty 84th percentile in f9.0
+ 603- 606 F4.2   [yr]        Utf9.0    Total uncertainty 84th percentile in f9.0
+ 608- 611 F4.2   [yr]        Lrf9.0    Random uncertainty 16th percentile in f9.0
+ 613- 616 F4.2   [yr]        Ltf9.0    Total uncertainty 16th percentile in f9.0
+ 618- 621 F4.2   [yr]        f8.95     Mass fraction formed prior to log(t) = 8.95
+                                          from best fit SFH (2)
+ 623- 626 F4.2   [yr]        Urf8.95   Random uncertainty 84th percentile in f8.95
+ 628- 631 F4.2   [yr]        Utf8.95   Total uncertainty 84th percentile in f8.95
+ 633- 636 F4.2   [yr]        Lrf8.95   Random uncertainty 16th percentile in f8.95
+ 638- 641 F4.2   [yr]        Ltf8.95   Total uncertainty 16th percentile in f8.95
+ 643- 646 F4.2   [yr]        f8.9      Mass fraction formed prior to log(t) = 8.9
+                                          from best fit SFH (2)
+ 648- 651 F4.2   [yr]        Urf8.9    Random uncertainty 84th percentile in f8.9
+ 653- 656 F4.2   [yr]        Utf8.9    Total uncertainty 84th percentile in f8.9
+ 658- 661 F4.2   [yr]        Lrf8.9    Random uncertainty 16th percentile in f8.9
+ 663- 666 F4.2   [yr]        Ltf8.9    Total uncertainty 16th percentile in f8.9
+ 668- 671 F4.2   [yr]        f8.85     Mass fraction formed prior to log(t) = 8.85
+                                          from best fit SFH (2)
+ 673- 676 F4.2   [yr]        Urf8.85   Random uncertainty 84th percentile in f8.85
+ 678- 681 F4.2   [yr]        Utf8.85   Total uncertainty 84th percentile in f8.85
+ 683- 686 F4.2   [yr]        Lrf8.85   Random uncertainty 16th percentile in f8.85
+ 688- 691 F4.2   [yr]        Ltf8.85   Total uncertainty 16th percentile in f8.85
+ 693- 696 F4.2   [yr]        f8.8      Mass fraction formed prior to log(t) = 8.8
+                                          from best fit SFH (2)
+ 698- 700 F3.1   [yr]        Urf8.8    Random uncertainty 84th percentile in f8.8
+ 702- 705 F4.2   [yr]        Utf8.8    Total uncertainty 84th percentile in f8.8
+ 707- 710 F4.2   [yr]        Lrf8.8    Random uncertainty 16th percentile in f8.8
+ 712- 715 F4.2   [yr]        Ltf8.8    Total uncertainty 16th percentile in f8.8
+ 717- 720 F4.2   [yr]        f8.75     Mass fraction formed prior to log(t) = 8.75
+                                          from best fit SFH (2)
+ 722- 724 F3.1   [yr]        Urf8.75   Random uncertainty 84th percentile in f8.75
+ 726- 729 F4.2   [yr]        Utf8.75   Total uncertainty 84th percentile in f8.75
+ 731- 734 F4.2   [yr]        Lrf8.75   Random uncertainty 16th percentile in f8.75
+ 736- 739 F4.2   [yr]        Ltf8.75   Total uncertainty 16th percentile in f8.75
+ 741- 744 F4.2   [yr]        f8.7      Mass fraction formed prior to log(t) = 8.7
+                                          from best fit SFH (2)
+ 746- 748 F3.1   [yr]        Urf8.7    Random uncertainty 84th percentile in f8.7
+ 750- 753 F4.2   [yr]        Utf8.7    Total uncertainty 84th percentile in f8.7
+ 755- 758 F4.2   [yr]        Lrf8.7    Random uncertainty 16th percentile in f8.7
+ 760- 763 F4.2   [yr]        Ltf8.7    Total uncertainty 16th percentile in f8.7
+ 765- 768 F4.2   [yr]        f8.6      Mass fraction formed prior to log(t) = 8.6
+                                          from best fit SFH (2)
+ 770- 772 F3.1   [yr]        Urf8.6    Random uncertainty 84th percentile in f8.6
+ 774- 777 F4.2   [yr]        Utf8.6    Total uncertainty 84th percentile in f8.6
+ 779- 782 F4.2   [yr]        Lrf8.6    Random uncertainty 16th percentile in f8.6
+ 784- 787 F4.2   [yr]        Ltf8.6    Total uncertainty 16th percentile in f8.6
+ 789- 792 F4.2   [yr]        f8.5      Mass fraction formed prior to log(t) = 8.5
+                                          from best fit SFH (2)
+ 794- 796 F3.1   [yr]        Urf8.5    Random uncertainty 84th percentile in f8.5
+ 798- 801 F4.2   [yr]        Utf8.5    Total uncertainty 84th percentile in f8.5
+ 803- 806 F4.2   [yr]        Lrf8.5    Random uncertainty 16th percentile in f8.5
+ 808- 811 F4.2   [yr]        Ltf8.5    Total uncertainty 16th percentile in f8.5
+ 813- 816 F4.2   [yr]        f8.4      Mass fraction formed prior to log(t) = 8.4
+                                          from best fit SFH (2)
+ 818- 820 F3.1   [yr]        Urf8.4    Random uncertainty 84th percentile in f8.4
+ 822- 825 F4.2   [yr]        Utf8.4    Total uncertainty 84th percentile in f8.4
+ 827- 830 F4.2   [yr]        Lrf8.4    Random uncertainty 16th percentile in f8.4
+ 832- 835 F4.2   [yr]        Ltf8.4    Total uncertainty 16th percentile in f8.4
+ 837- 840 F4.2   [yr]        f8.3      Mass fraction formed prior to log(t) = 8.3
+                                          from best fit SFH (2)
+ 842- 844 F3.1   [yr]        Urf8.3    Random uncertainty 84th percentile in f8.3
+ 846- 849 F4.2   [yr]        Utf8.3    Total uncertainty 84th percentile in f8.3
+ 851- 854 F4.2   [yr]        Lrf8.3    Random uncertainty 16th percentile in f8.3
+ 856- 859 F4.2   [yr]        Ltf8.3    Total uncertainty 16th percentile in f8.3
+ 861- 864 F4.2   [yr]        f8.2      Mass fraction formed prior to log(t) = 8.2
+                                          from best fit SFH (2)
+ 866- 868 F3.1   [yr]        Urf8.2    Random uncertainty 84th percentile in f8.2
+ 870- 873 F4.2   [yr]        Utf8.2    Total uncertainty 84th percentile in f8.2
+ 875- 878 F4.2   [yr]        Lrf8.2    Random uncertainty 16th percentile in f8.2
+ 880- 883 F4.2   [yr]        Ltf8.2    Total uncertainty 16th percentile in f8.2
+ 885- 888 F4.2   [yr]        f8.1      Mass fraction formed prior to log(t) = 8.1
+                                          from best fit SFH (2)
+ 890- 892 F3.1   [yr]        Urf8.1    Random uncertainty 84th percentile in f8.1
+ 894- 897 F4.2   [yr]        Utf8.1    Total uncertainty 84th percentile in f8.1
+ 899- 902 F4.2   [yr]        Lrf8.1    Random uncertainty 16th percentile in f8.1
+ 904- 907 F4.2   [yr]        Ltf8.1    Total uncertainty 16th percentile in f8.1
+ 909- 912 F4.2   [yr]        f8.0      Mass fraction formed prior to log(t) = 8.0
+                                          from best fit SFH (2)
+ 914- 916 F3.1   [yr]        Urf8.0    Random uncertainty 84th percentile in f8.0
+ 918- 921 F4.2   [yr]        Utf8.0    Total uncertainty 84th percentile in f8.0
+ 923- 926 F4.2   [yr]        Lrf8.0    Random uncertainty 16th percentile in f8.0
+ 928- 931 F4.2   [yr]        Ltf8.0    Total uncertainty 16th percentile in f8.0
+ 933- 936 F4.2   [yr]        f7.9      Mass fraction formed prior to log(t) = 7.9
+                                          from best fit SFH (2)
+ 938- 940 F3.1   [yr]        Urf7.9    Random uncertainty 84th percentile in f7.9
+ 942- 945 F4.2   [yr]        Utf7.9    Total uncertainty 84th percentile in f7.9
+ 947- 950 F4.2   [yr]        Lrf7.9    Random uncertainty 16th percentile in f7.9
+ 952- 955 F4.2   [yr]        Ltf7.9    Total uncertainty 16th percentile in f7.9
+ 957- 960 F4.2   [yr]        f7.8      Mass fraction formed prior to log(t) = 7.8
+                                          from best fit SFH (2)
+ 962- 964 F3.1   [yr]        Urf7.8    Random uncertainty 84th percentile in f7.8
+ 966- 969 F4.2   [yr]        Utf7.8    Total uncertainty 84th percentile in f7.8
+ 971- 974 F4.2   [yr]        Lrf7.8    Random uncertainty 16th percentile in f7.8
+ 976- 979 F4.2   [yr]        Ltf7.8    Total uncertainty 16th percentile in f7.8
+ 981- 984 F4.2   [yr]        f7.7      Mass fraction formed prior to log(t) = 7.7
+                                          from best fit SFH (2)
+ 986- 988 F3.1   [yr]        Urf7.7    Random uncertainty 84th percentile in f7.7
+ 990- 993 F4.2   [yr]        Utf7.7    Total uncertainty 84th percentile in f7.7
+ 995- 998 F4.2   [yr]        Lrf7.7    Random uncertainty 16th percentile in f7.7
+1000-1003 F4.2   [yr]        Ltf7.7    Total uncertainty 16th percentile in f7.7
+1005-1008 F4.2   [yr]        f7.6      Mass fraction formed prior to log(t) = 7.6
+                                        from best fit SFH (2)
+1010-1013 F4.2   [yr]        Urf7.6    Random uncertainty 84th percentile in f7.6
+1015-1018 F4.2   [yr]        Utf7.6    Total uncertainty 84th percentile in f7.6
+1020-1023 F4.2   [yr]        Lrf7.6    Random uncertainty 16th percentile in f7.6
+1025-1028 F4.2   [yr]        Ltf7.6    Total uncertainty 16th percentile in f7.6
+1030-1033 F4.2   [yr]        f7.5      Mass fraction formed prior to log(t) = 7.5
+                                        from best fit SFH (2)
+1035-1037 F3.1   [yr]        Urf7.5    Random uncertainty 84th percentile in f7.5
+1039-1041 F3.1   [yr]        Utf7.5    Total uncertainty 84th percentile in f7.5
+1043-1046 F4.2   [yr]        Lrf7.5    Random uncertainty 16th percentile in f7.5
+1048-1051 F4.2   [yr]        Ltf7.5    Total uncertainty 16th percentile in f7.5
+1053-1056 F4.2   [yr]        f7.4      Mass fraction formed prior to log(t) = 7.4
+                                        from best fit SFH (2)
+1058-1060 F3.1   [yr]        Urf7.4    Random uncertainty 84th percentile in f7.4
+1062-1064 F3.1   [yr]        Utf7.4    Total uncertainty 84th percentile in f7.4
+1066-1069 F4.2   [yr]        Lrf7.4    Random uncertainty 16th percentile in f7.4
+1071-1074 F4.2   [yr]        Ltf7.4    Total uncertainty 16th percentile in f7.4
+1076-1079 F4.2   [yr]        f7.3      Mass fraction formed prior to log(t) = 7.3
+                                        from best fit SFH (2)
+1081-1083 F3.1   [yr]        Urf7.3    Random uncertainty 16th percentile in f7.3
+1085-1087 F3.1   [yr]        Utf7.3    Total uncertainty 84th percentile in f7.3
+1089-1092 F4.2   [yr]        Lrf7.3    Random uncertainty 16th percentile in f7.3
+1094-1097 F4.2   [yr]        Ltf7.3    Total uncertainty 16th percentile in f7.3
+1099-1102 F4.2   [yr]        f7.2      Mass fraction formed prior to log(t) = 7.2
+                                        from best fit SFH (2)
+1104-1106 F3.1   [yr]        Urf7.2    Random uncertainty 84th percentile in f7.2
+1108-1110 F3.1   [yr]        Utf7.2    Total uncertainty 84th percentile in f7.2
+1112-1115 F4.2   [yr]        Lrf7.2    Random uncertainty 16th percentile in f7.2
+1117-1120 F4.2   [yr]        Ltf7.2    Total uncertainty 16th percentile in f7.2
+1122-1124 F3.1   [yr]        f7.1      Mass fraction formed prior to log(t) = 7.1
+                                        from best fit SFH (2)
+1126-1128 F3.1   [yr]        Urf7.1    Random uncertainty 84th percentile in f7.1
+1130-1132 F3.1   [yr]        Utf7.1    Total uncertainty 84th percentile in f7.1
+1134-1137 F4.2   [yr]        Lrf7.1    Random uncertainty 16th percentile in f7.1
+1139-1142 F4.2   [yr]        Ltf7.1    Total uncertainty 16th percentile in f7.1
+1144-1146 F3.1   [yr]        f7.0      Mass fraction formed prior to log(t) = 7.0
+                                        from best fit SFH (2)
+1148-1150 F3.1   [yr]        Urf7.0    Random uncertainty 84th percentile in f7.0
+1152-1154 F3.1   [yr]        Utf7.0    Total uncertainty 84th percentile in f7.0
+1156-1158 F3.1   [yr]        Lrf7.0    Random uncertainty 16th percentile in f7.0
+1160-1162 F3.1   [yr]        Ltf7.0    Total uncertainty 16th percentile in f7.0
+1164-1166 F3.1   [yr]        f6.9      Mass fraction formed prior to log(t) = 6.9
+                                        from best fit SFH (2)
+1168-1170 F3.1   [yr]        Urf6.9    Random uncertainty 84th percentile in f6.9
+1172-1174 F3.1   [yr]        Utf6.9    Total uncertainty 84th percentile in f6.9
+1176-1178 F3.1   [yr]        Lrf6.9    Random uncertainty 16th percentile in f6.9
+1180-1182 F3.1   [yr]        Ltf6.9    Total uncertainty 16th percentile in f6.9
+1184-1186 F3.1   [yr]        f6.8      Mass fraction formed prior to log(t) = 6.8
+                                        from best fit SFH (2)
+1188-1190 F3.1   [yr]        Urf6.8    Random uncertainty 84th percentile in f6.8
+1192-1194 F3.1   [yr]        Utf6.8    Total uncertainty 84th percentile in f6.8
+1196-1198 F3.1   [yr]        Lrf6.8    Random uncertainty 16th percentile in f6.8
+1200-1202 F3.1   [yr]        Ltf6.8    Total uncertainty 16th percentile in f6.8
+1204-1206 F3.1   [yr]        f6.7      Mass fraction formed prior to log(t) = 6.7
+                                        from best fit SFH (2)
+1208-1210 F3.1   [yr]        Urf6.7    Random uncertainty 84th percentile in f6.7
+1212-1214 F3.1   [yr]        Utf6.7    Total uncertainty 84th percentile in f6.7
+1216-1218 F3.1   [yr]        Lrf6.7    Random uncertainty 16th percentile in f6.7
+1220-1222 F3.1   [yr]        Ltf6.7    Total uncertainty 16th percentile in f6.7
+1224-1226 F3.1   [yr]        f6.6      Mass fraction formed prior to log(t) = 6.6
+                                        from best fit SFH (2)
+1228-1230 F3.1   [yr]        Urf6.6    Random uncertainty 84th percentile in f6.6
+1232-1234 F3.1   [yr]        Utf6.6    Total uncertainty 84th percentile in f6.6
+1236-1238 F3.1   [yr]        Lrf6.6    Random uncertainty 16th percentile in f6.6
+1240-1243 F4.2   [yr]        Ltf6.6    Total uncertainty 16th percentile in f6.6
+--------------------------------------------------------------------------------
+Note (1): Per field computed by integrating the SFH. Note that this quantity is
+          not the present day stellar mass, as it does not account for stellar 
+          evolutions effects (e.g., mass loss, stellar death, etc). 
+Note (2): By construction, the cumulative SFHs are 0 at log(t) = 10.15 
+          and 1 at log(t) = 6.6.
+--------------------------------------------------------------------------------
+IC 1613      5.62  1.97   4.22   1.96   5.32  0.14 0.01 0.16 0.02 0.08 0.25 0.02 0.1  0.0  0.11 0.3  0.01 0.1  0.02 0.13 0.31 0.02 0.24 0.01 0.11 0.31 0.03 0.23 0.01 0.07 0.31 0.06 0.25 0.0  0.06 0.51 0.0  0.21 0.07 0.14 0.52 0.05 0.22 0.0  0.12 0.6  0.0  0.14 0.03 0.14 0.61 0.0  0.17 0.02 0.1  0.61 0.01 0.18 0.01 0.09 0.61 0.01 0.19 0.01 0.09 0.61 0.02 0.24 0.0  0.01 0.64 0.01 0.21 0.01 0.05 0.65 0.02 0.22 0.0  0.0  0.85 0.01 0.06 0.01 0.06 0.89 0.0  0.04 0.01 0.03 0.89 0.0  0.04 0.0  0.02 0.9  0.0  0.03 0.0  0.01 0.91 0.0 0.03 0.0  0.01 0.92 0.0 0.02 0.0  0.01 0.93 0.0 0.02 0.0  0.01 0.94 0.0 0.03 0.0  0.0  0.94 0.0  0.03 0.0  0.0  0.95 0.0  0.03 0.0  0.0  0.96 0.0  0.02 0.0  0.0  0.96 0.0 0.01 0.0  0.0  0.96 0.0 0.01 0.0  0.0  0.97 0.0 0.01 0.0  0.0  0.97 0.0 0.01 0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.98 0.0 0.0  0.0  0.0  0.98 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0  0.01 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
+Leo A        2.19  1.06   1.49   1.05   1.97  0.23 0.01 0.07 0.07 0.17 0.3  0.0  0.03 0.08 0.19 0.3  0.0  0.01 0.05 0.2  0.3  0.01 0.06 0.04 0.16 0.31 0.01 0.01 0.03 0.24 0.32 0.02 0.07 0.03 0.16 0.32 0.03 0.17 0.02 0.07 0.32 0.04 0.19 0.0  0.06 0.36 0.03 0.08 0.01 0.13 0.36 0.05 0.11 0.0  0.13 0.47 0.0  0.0  0.06 0.24 0.47 0.01 0.05 0.03 0.21 0.5  0.02 0.06 0.03 0.25 0.56 0.01 0.01 0.02 0.3  0.56 0.03 0.04 0.0  0.3  0.56 0.06 0.28 0.0  0.08 0.71 0.0  0.12 0.05 0.09 0.74 0.0  0.14 0.02 0.04 0.75 0.01 0.11 0.01 0.06 0.84 0.0 0.02 0.01 0.06 0.84 0.0 0.02 0.01 0.06 0.84 0.0 0.04 0.01 0.04 0.85 0.0 0.04 0.0  0.02 0.85 0.01 0.03 0.0  0.04 0.87 0.0  0.03 0.01 0.03 0.88 0.01 0.03 0.0  0.04 0.89 0.0 0.01 0.0  0.05 0.89 0.0 0.02 0.0  0.03 0.91 0.0 0.02 0.0  0.03 0.93 0.0 0.02 0.0  0.01 0.95 0.0 0.02 0.0  0.0  0.96 0.0 0.01 0.0  0.01 0.96 0.0 0.01 0.0  0.0  0.97 0.0 0.01 0.0  0.0  0.97 0.0 0.01 0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.98 0.01 0.01 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
+NGC 185     61.6  14.57  37.06  14.93  53.93  0.29 0.0  0.27 0.01 0.07 0.29 0.01 0.27 0.01 0.09 0.3  0.02 0.37 0.0  0.06 0.68 0.01 0.3  0.05 0.16 0.7  0.02 0.24 0.01 0.14 0.7  0.04 0.27 0.0  0.08 0.76 0.02 0.21 0.02 0.1  0.83 0.0  0.15 0.02 0.08 0.83 0.0  0.15 0.02 0.07 0.83 0.01 0.15 0.01 0.06 0.87 0.01 0.12 0.02 0.09 0.89 0.01 0.1  0.0  0.03 0.91 0.01 0.08 0.01 0.02 0.92 0.01 0.07 0.0  0.02 0.97 0.01 0.02 0.01 0.02 0.99 0.0  0.0  0.0  0.01 0.99 0.0  0.0  0.0  0.0  0.99 0.0  0.0  0.0  0.0  0.99 0.0  0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0  0.0  0.0  0.0  0.99 0.0  0.0  0.0  0.0  1.0  0.0  0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0  0.0  0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
+NGC 205     84.13 37.66  67.86  30.59  73.11  0.34 0.0  0.22 0.04 0.1  0.34 0.03 0.33 0.03 0.05 0.34 0.06 0.34 0.01 0.05 0.43 0.1  0.31 0.0  0.0  0.72 0.0  0.05 0.12 0.3  0.76 0.02 0.05 0.03 0.31 0.78 0.03 0.13 0.0  0.23 0.84 0.0  0.09 0.01 0.1  0.85 0.0  0.09 0.01 0.05 0.85 0.0  0.09 0.01 0.04 0.85 0.0  0.09 0.01 0.03 0.85 0.0  0.09 0.0  0.03 0.85 0.01 0.08 0.0  0.03 0.85 0.01 0.08 0.0  0.01 0.88 0.0  0.06 0.01 0.02 0.88 0.0  0.06 0.01 0.03 0.92 0.0  0.05 0.01 0.03 0.96 0.01 0.02 0.0  0.02 0.97 0.0  0.01 0.0  0.01 0.98 0.0 0.01 0.0  0.01 0.98 0.0 0.01 0.0  0.01 0.98 0.0 0.01 0.0  0.01 0.98 0.0 0.01 0.0  0.01 0.98 0.0  0.01 0.0  0.01 0.98 0.0  0.02 0.0  0.0  0.99 0.0  0.01 0.0  0.0  0.99 0.0 0.01 0.0  0.0  1.0  0.0 0.0  0.0  0.01 1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0  0.0  0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
+NGC 6822    17.54  5.57  14.32   5.76  14.18  0.19 0.01 0.13 0.01 0.06 0.2  0.01 0.17 0.01 0.03 0.23 0.01 0.09 0.01 0.1  0.24 0.01 0.17 0.01 0.08 0.24 0.02 0.22 0.0  0.07 0.24 0.03 0.22 0.0  0.07 0.27 0.04 0.31 0.0  0.1  0.37 0.0  0.42 0.05 0.08 0.37 0.01 0.43 0.02 0.07 0.4  0.02 0.43 0.03 0.04 0.54 0.01 0.33 0.03 0.14 0.6  0.0  0.32 0.03 0.14 0.6  0.01 0.32 0.02 0.13 0.6  0.02 0.33 0.0  0.11 0.6  0.03 0.29 0.0  0.06 0.69 0.01 0.19 0.01 0.01 0.83 0.0  0.1  0.01 0.04 0.83 0.0  0.07 0.01 0.01 0.84 0.01 0.06 0.0  0.0  0.86 0.0 0.04 0.0  0.02 0.87 0.0 0.04 0.0  0.01 0.88 0.0 0.04 0.0  0.03 0.9  0.0 0.06 0.0  0.02 0.92 0.0  0.06 0.0  0.01 0.92 0.0  0.05 0.0  0.01 0.92 0.0  0.05 0.0  0.0  0.94 0.0 0.04 0.0  0.0  0.95 0.0 0.03 0.0  0.01 0.96 0.0 0.01 0.0  0.01 0.97 0.0 0.01 0.0  0.0  0.97 0.0 0.01 0.0  0.01 0.98 0.0 0.01 0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.99 0.0 0.01 0.0  0.0  0.99 0.0 0.01 0.0  0.0  0.99 0.0 0.01 0.0  0.0  0.99 0.0 0.01 0.0  0.0  0.99 0.0  0.01 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
+Phoenix      1.88  0.63   0.88   0.67   1.37  0.35 0.01 0.09 0.02 0.07 0.45 0.02 0.06 0.02 0.14 0.55 0.03 0.05 0.02 0.11 0.64 0.0  0.01 0.03 0.14 0.64 0.03 0.05 0.0  0.08 0.71 0.0  0.02 0.04 0.12 0.71 0.03 0.04 0.0  0.04 0.73 0.03 0.05 0.0  0.01 0.81 0.0  0.02 0.03 0.05 0.83 0.0  0.02 0.02 0.04 0.83 0.01 0.04 0.01 0.01 0.83 0.02 0.04 0.0  0.02 0.88 0.0  0.01 0.01 0.02 0.88 0.01 0.02 0.0  0.0  0.91 0.0  0.01 0.01 0.01 0.93 0.0  0.0  0.01 0.01 0.93 0.01 0.01 0.0  0.0  0.94 0.0  0.01 0.0  0.01 0.95 0.0  0.01 0.0  0.0  0.96 0.0 0.0  0.0  0.01 0.96 0.0 0.0  0.0  0.01 0.97 0.0 0.0  0.0  0.01 0.97 0.0 0.0  0.0  0.01 0.97 0.0  0.01 0.0  0.0  0.98 0.0  0.01 0.0  0.0  0.98 0.0  0.0  0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0  0.0  0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
+Sagittarius  0.03  0.01   0.02   0.01   0.03  0.14 0.0  0.0  0.07 0.14 0.14 0.01 0.11 0.03 0.12 0.14 0.04 0.18 0.0  0.1  0.14 0.04 0.21 0.0  0.09 0.14 0.06 0.26 0.0  0.09 0.14 0.11 0.42 0.0  0.0  0.33 0.01 0.33 0.07 0.09 0.5  0.01 0.29 0.08 0.13 0.57 0.0  0.39 0.06 0.06 0.57 0.09 0.41 0.01 0.01 0.7  0.01 0.3  0.1  0.1  0.84 0.01 0.15 0.06 0.06 1.0  0.0  0.0  0.11 0.11 1.0  0.0  0.0  0.07 0.07 1.0  0.0  0.0  0.05 0.05 1.0  0.0  0.0  0.05 0.05 1.0  0.0  0.0  0.05 0.05 1.0  0.0  0.0  0.04 0.04 1.0  0.0  0.0  0.04 0.04 1.0  0.0 0.0  0.04 0.04 1.0  0.0 0.0  0.04 0.04 1.0  0.0 0.0  0.04 0.04 1.0  0.0 0.0  0.03 0.03 1.0  0.0  0.0  0.03 0.03 1.0  0.0  0.0  0.03 0.03 1.0  0.0  0.0  0.03 0.03 1.0  0.0 0.0  0.03 0.03 1.0  0.0 0.0  0.03 0.03 1.0  0.0 0.0  0.02 0.02 1.0  0.0 0.0  0.02 0.02 1.0  0.0 0.0  0.02 0.02 1.0  0.0 0.0  0.02 0.02 1.0  0.0 0.0  0.02 0.02 1.0  0.0 0.0  0.02 0.02 1.0  0.0 0.0  0.02 0.02 1.0  0.0 0.0  0.02 0.02 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0  0.0  0.01 0.01 1.0  0.0 0.0 0.01 0.01 1.0  0.0 0.0 0.01 0.01 1.0  0.0 0.0 0.01 0.01 1.0  0.0 0.0 0.01 0.01 1.0 0.0 0.0 0.01 0.01 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
+Sex A       22.42  9.44  15.69   9.06  20.75  0.61 0.0  0.18 0.24 0.43 0.61 0.0  0.18 0.11 0.14 0.61 0.01 0.17 0.06 0.09 0.61 0.02 0.17 0.04 0.08 0.61 0.04 0.17 0.02 0.07 0.61 0.05 0.16 0.0  0.07 0.71 0.0  0.08 0.05 0.07 0.71 0.0  0.08 0.04 0.07 0.71 0.0  0.08 0.03 0.05 0.71 0.0  0.07 0.02 0.04 0.71 0.0  0.07 0.02 0.04 0.71 0.0  0.07 0.02 0.03 0.71 0.0  0.07 0.02 0.03 0.71 0.0  0.07 0.01 0.03 0.71 0.01 0.07 0.01 0.03 0.71 0.01 0.13 0.01 0.03 0.72 0.01 0.14 0.01 0.03 0.79 0.01 0.08 0.0  0.08 0.81 0.0  0.08 0.01 0.07 0.83 0.0 0.06 0.01 0.03 0.83 0.0 0.06 0.01 0.03 0.83 0.0 0.06 0.01 0.02 0.86 0.0 0.05 0.01 0.02 0.86 0.0  0.04 0.01 0.02 0.88 0.0  0.03 0.01 0.02 0.89 0.0  0.02 0.01 0.03 0.9  0.0 0.03 0.0  0.01 0.91 0.0 0.02 0.0  0.01 0.92 0.0 0.02 0.0  0.02 0.93 0.0 0.03 0.0  0.01 0.94 0.0 0.02 0.0  0.01 0.95 0.0 0.02 0.0  0.01 0.96 0.0 0.01 0.0  0.01 0.96 0.0 0.01 0.0  0.01 0.96 0.0 0.01 0.0  0.01 0.96 0.0 0.01 0.0  0.01 0.97 0.0 0.01 0.0  0.01 0.97 0.0 0.01 0.0  0.01 0.98 0.0 0.01 0.0  0.0  0.98 0.0  0.0  0.0  0.0  0.99 0.0 0.0 0.0  0.0  0.99 0.0 0.0 0.0  0.0  0.99 0.0 0.0 0.0  0.0  0.99 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
+Sculptor     0.01  0.002  0.002  0.001  0.002 0.2  0.05 0.6  0.06 0.06 0.84 0.05 0.16 0.01 0.05 0.96 0.0  0.03 0.03 0.17 0.96 0.0  0.03 0.02 0.17 0.96 0.0  0.03 0.01 0.12 0.96 0.0  0.03 0.01 0.06 0.97 0.0  0.03 0.01 0.03 0.98 0.0  0.02 0.01 0.02 0.98 0.0  0.02 0.01 0.01 0.98 0.0  0.01 0.01 0.02 0.98 0.0  0.01 0.01 0.01 0.99 0.0  0.01 0.01 0.01 0.99 0.0  0.0  0.01 0.01 0.99 0.0  0.01 0.01 0.01 1.0  0.0  0.0  0.02 0.02 1.0  0.0  0.0  0.01 0.02 1.0  0.0  0.0  0.01 0.02 1.0  0.0  0.0  0.01 0.02 1.0  0.0  0.0  0.02 0.02 1.0  0.0 0.0  0.01 0.02 1.0  0.0 0.0  0.01 0.02 1.0  0.0 0.0  0.02 0.02 1.0  0.0 0.0  0.01 0.02 1.0  0.0  0.0  0.01 0.02 1.0  0.0  0.0  0.01 0.02 1.0  0.0  0.0  0.01 0.02 1.0  0.0 0.0  0.01 0.02 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.01 0.01 1.0  0.0 0.0  0.0  0.0  1.0  0.0 0.0  0.0  0.0  1.0  0.0  0.0  0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
+WLM          8.63  2.54   4.49   2.38   6.73  0.32 0.0  0.08 0.05 0.11 0.32 0.0  0.07 0.04 0.1  0.33 0.0  0.07 0.03 0.1  0.36 0.0  0.08 0.04 0.08 0.36 0.0  0.08 0.03 0.08 0.36 0.02 0.09 0.01 0.08 0.39 0.0  0.09 0.03 0.1  0.39 0.0  0.09 0.03 0.08 0.39 0.0  0.15 0.03 0.08 0.39 0.0  0.08 0.02 0.18 0.39 0.01 0.08 0.02 0.19 0.39 0.01 0.09 0.01 0.19 0.39 0.02 0.16 0.01 0.16 0.39 0.02 0.17 0.0  0.17 0.39 0.02 0.18 0.0  0.19 0.49 0.03 0.25 0.01 0.05 0.6  0.01 0.22 0.06 0.06 0.77 0.02 0.06 0.02 0.06 0.86 0.0  0.05 0.01 0.06 0.86 0.0 0.04 0.0  0.07 0.86 0.0 0.04 0.0  0.06 0.86 0.0 0.05 0.0  0.05 0.87 0.0 0.05 0.01 0.03 0.87 0.0  0.05 0.0  0.02 0.87 0.01 0.06 0.0  0.01 0.9  0.01 0.04 0.01 0.02 0.92 0.0 0.04 0.01 0.02 0.92 0.0 0.03 0.0  0.02 0.94 0.0 0.01 0.0  0.02 0.94 0.0 0.02 0.0  0.0  0.96 0.0 0.01 0.0  0.01 0.97 0.0 0.01 0.0  0.0  0.98 0.0 0.01 0.0  0.0  0.98 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0 0.0  0.0  0.0  0.99 0.0  0.0  0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0  0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0  0.0  1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0 1.0 0.0 0.0 0.0 0.0  
