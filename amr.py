@@ -51,8 +51,9 @@ def computeamr(galaxy, plot=False):
 
     gal_idx = np.where(weisz['ID']==galaxynames[galaxy])
     colnames = [name for name in weisz.colnames if name.startswith('f')]
-    t = [(10.**10.15)/1e9]+[10.**float(name[1:])/1e9 for name in colnames] # Lookback in Gyr
+    oldt = [(10.**10.15)/1e9]+[10.**float(name[1:])/1e9 for name in colnames] # Lookback in Gyr
     cumsfh = np.asarray([0]+[float(weisz[name][gal_idx]) for name in colnames])
+    oldsfh = cumsfh
     cumsfh_uplim = np.asarray([0]+[float(weisz['Ut'+name][gal_idx]) for name in colnames])
     cumsfh_lolim = np.asarray([0]+[float(weisz['Lt'+name][gal_idx]) for name in colnames])
 
@@ -72,9 +73,9 @@ def computeamr(galaxy, plot=False):
     cummdf = cummdf / cummdf[-1]
 
     # Interpolate to the same array of fraction of stars formed
-    cumsfh_lo = np.interp(cummdf, cumsfh-cumsfh_lolim, t)
-    cumsfh_hi = np.interp(cummdf, cumsfh+cumsfh_uplim, t)
-    t = np.interp(cummdf, cumsfh, t)
+    cumsfh_lo = np.interp(cummdf, cumsfh-cumsfh_lolim, oldt)
+    cumsfh_hi = np.interp(cummdf, cumsfh+cumsfh_uplim, oldt)
+    t = np.interp(cummdf, cumsfh, oldt)
 
     if plot:
         # Test: compare Sculptor AMR against GCE model
@@ -97,7 +98,7 @@ def computeamr(galaxy, plot=False):
             plt.savefig('figures/Scl_amr_test.png', bbox_inches='tight')
         plt.show()
 
-    return cdf_feh, t, cummdf, cumsfh_lo, cumsfh_hi
+    return cdf_feh, t, cummdf, cumsfh_lo, cumsfh_hi, oldt, oldsfh
 
 def makeplots():
     '''Plot the SFH, MDF, and AMR for multiple galaxies.'''
@@ -134,21 +135,45 @@ def makeplots():
     # Loop over all galaxies
     for i, galaxy in enumerate(galaxynames.keys()):
 
-        feh, lookback, cumfrac, cumsfh_lolim, cumsfh_uplim = computeamr(galaxy)
+        feh, lookback, cumfrac, cumsfh_lolim, cumsfh_uplim, _, _ = computeamr(galaxy)
 
         # Find [Fe/H] limit for when galaxy formed 95% of its mass
         lim95 = np.where(cumfrac <= 0.95)[0]
         badlim95 = np.where(cumfrac >= 0.95)[0]
         badlim95 = np.concatenate(([lim95[-1]],badlim95))
 
+        if galaxy=='Scl':
+            # Get age-metallicity relation from my GCE model
+            amr_delosreyes = np.load('/Users/miadelosreyes/Documents/Research/MnDwarfs_DTD/code/gce/output/amr_test.npy')
+            sfh_delosreyes = np.load('/Users/miadelosreyes/Documents/Research/MnDwarfs_DTD/code/gce/output/sfh_test.npy')
+            feh_gce = amr_delosreyes[:,0]  # [Fe/H]
+            age_gce = amr_delosreyes[:,1]  # Gyr
+            print(feh_gce)
+            #print(age_gce)
+            goodidx = np.where(np.isfinite(feh))[0]
+            #feh_gce = feh_gce[goodidx]
+            #age_gce = age_gce[goodidx]
+
+            # Get SFH from my GCE model
+            sfr = sfh_delosreyes[0]
+            cumsfr = np.cumsum(sfr)
+            t = 10.**(10.15)/1e9 - sfh_delosreyes[1]
+
+            axs[0].plot(t, cumsfr/np.sum(sfr), ls='-', lw=2, color=plt.cm.Dark2(i))
+
+            p1, = axs[2].plot(feh_gce, age_gce, ls='-', lw=2, color=plt.cm.Dark2(i))
+            handles.append(p1)
+
         # Plot SFH
-        p3, = axs[0].plot(lookback, cumfrac, ls='-', lw=2, color=plt.cm.Dark2(i))
-        p4 = axs[0].fill_betweenx(cumfrac, cumsfh_lolim, cumsfh_uplim, color=plt.cm.Dark2(i), alpha=0.3)
-        handles.append((p3,p4))
+        else:
+            p3, = axs[0].plot(lookback, cumfrac, ls='-', lw=2, color=plt.cm.Dark2(i))
+            p4 = axs[0].fill_betweenx(cumfrac, cumsfh_lolim, cumsfh_uplim, color=plt.cm.Dark2(i), alpha=0.3)
+            handles.append((p3,p4))
+
         labels.append(galaxynames[galaxy])
         axs[0].set_xlabel('Lookback time (Gyr)')
         axs[0].set_ylabel('Cumulative SFH')
-        axs[0].set_xlim(14,0)
+        axs[0].set_xlim(14.1,0)
         axs[0].set_ylim(0,1)
         axs[0].legend(handles=handles, labels=labels, loc='best')
 
@@ -160,15 +185,17 @@ def makeplots():
         axs[1].set_ylim(0,1)
 
         # Plot AMR
-        axs[2].plot(feh[lim95], lookback[lim95], ls='-', lw=2, color=plt.cm.Dark2(i))
-        axs[2].plot(feh[badlim95], lookback[badlim95], ls='-', lw=2, color=plt.cm.Pastel2(i))
+        if galaxy!='Scl':
+            axs[2].plot(feh[lim95], 10.**(10.15)/1e9 - lookback[lim95], ls='-', lw=2, color=plt.cm.Dark2(i))
+            axs[2].plot(feh[badlim95], 10.**(10.15)/1e9 - lookback[badlim95], ls='-', lw=2, color=plt.cm.Pastel2(i))
         #axs[2].axvline(feh[lim95][-1], ls='--', lw=1, color=plt.cm.Dark2(i))
         axs[2].set_xlabel('[Fe/H]')
-        axs[2].set_ylabel('Lookback time (Gyr)')
+        axs[2].set_ylabel('Time (Gyr)')
         axs[2].set_xlim(-3.2,-0.7)
-        axs[2].set_ylim(14,0)
+        axs[2].set_ylim(-0.5,8.5)
 
         # Plot linear fits to AMR
+        '''
         age, feh, p, fehlimidx = amr(galaxy)
         linearfit = np.polyval(p,feh)
         p5, = axs[2].plot(feh, linearfit, ls=':', lw=2, color=plt.cm.Dark2(i))
@@ -176,6 +203,7 @@ def makeplots():
         labels2.append(galaxynames[galaxy]+': $y='+'{:.2f}'.format(p[0])+'x'+'{:+.2f}'.format(p[1])+'$')
         print(labels2)
         axs[2].legend(handles=handles2, labels=labels2, loc='best')
+        '''
 
     plt.savefig('figures/params_time.pdf', bbox_inches='tight')
     plt.show()
@@ -194,10 +222,14 @@ def makeplots():
 def amr(name, gcetest=False, plot=False):
     '''Returns age, metallicity, best-fit poly1d, indices (over which poly1d is fit)'''
 
-    feh, age, cumfrac, _, _ = computeamr(name)
-    fehlimidx = np.where(cumfrac < 0.95)[0]  # [Fe/H] limit for when galaxy formed 95% of its mass
+    feh, age, cumfrac, _, _, oldt, oldsfr = computeamr(name)
+    fehlimidx = np.where(cumfrac < 0.9)[0]  # [Fe/H] limit for when galaxy formed 95% of its mass
     feh = np.asarray(feh)
     age = np.asarray(age)
+
+    # SFR as function of t (without interpolation)
+    t = 10**10.15/1e9 - np.asarray(oldt)
+    sfr = np.diff(oldsfr)  # fraction (not total); need to multiply by total stellar mass
 
     if name=='Scl' and gcetest==True:
         # Get age-metallicity relation from my GCE model
@@ -208,7 +240,23 @@ def amr(name, gcetest=False, plot=False):
         feh = feh[goodidx]
         age = age[goodidx]
 
-        fehlimidx = np.where((feh > -2) & (feh < -1.5))[0]
+        fehlimidx = np.where((feh < -1.1))[0]
+        #fehlimidx = np.where((feh))[0]
+
+        # Get SFH from my GCE model
+        sfh_delosreyes = np.load('/Users/miadelosreyes/Documents/Research/MnDwarfs_DTD/code/gce/plots/sfh_test.npy')
+
+        sfr = sfh_delosreyes[0]
+        t = sfh_delosreyes[1]
+        #plt.plot(t, sfr, 'k-')
+        #plt.show()
+
+    # Extrapolate to [Fe/H] ~ 0.
+    #feh0 = 0.0
+    #age0 = age_dlr[0]+(feh0-feh_dlr[0])*(age_dlr[1]-age_dlr[0])/(feh_dlr[1]-feh_dlr[0])
+    #age0 = age_dlr[-1]+(feh0-feh_dlr[-1])*(age_dlr[-1]-age_dlr[-2])/(feh_dlr[-1]-feh_dlr[-2])
+    #feh_dlr = np.concatenate((feh_dlr,[feh0]))
+    #age_dlr = np.concatenate((age_dlr,[age0]))
 
     '''
     elif name=='deBoer':
@@ -239,7 +287,7 @@ def amr(name, gcetest=False, plot=False):
         plt.savefig('figures/amr_'+name+'.png', bbox_inches='tight')
         plt.show()
 
-    return age, feh, p, fehlimidx
+    return age, feh, p, fehlimidx, sfr, t
 
 if __name__=="__main__":
     #computeamr('Scl', plot=True)
